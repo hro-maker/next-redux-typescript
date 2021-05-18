@@ -1,7 +1,7 @@
 import axios from "axios"
 import { authactions } from "../../types/authreducer"
 import { axioss } from "../../utils.axiosinstance"
-
+import jwt_decode from "jwt-decode";
 interface userr{
     email:string,
     password:string
@@ -31,4 +31,18 @@ export const register = (user:userr)=>{
            dispatch({type:authactions.authenticate_failure,payload:err.message})
        })
     }
+}
+export const Isuserlogin=()=>{
+    return dispatch =>{
+        let user
+        let token
+        if(process.browser){
+            token = JSON.parse(localStorage.getItem("token"))
+        }
+        if(token){
+                let decode=jwt_decode(token)
+                console.log("token",decode)
+        }
+    }
+        
 }
