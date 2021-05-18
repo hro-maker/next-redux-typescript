@@ -1,0 +1,34 @@
+import axios from "axios"
+import { authactions } from "../../types/authreducer"
+import { axioss } from "../../utils.axiosinstance"
+
+interface userr{
+    email:string,
+    password:string
+}
+export const login = (user:userr)=>{
+    return async dispatch=>{
+            dispatch({type:authactions.authenticate_request})
+       await axioss.post('/auth/login',user).then((res)=>{
+           process.browser && localStorage.setItem("token",JSON.stringify(res.data.token))
+        dispatch({type:authactions.authenticate_success,payload:res.data,message:"authenticate success"})
+       }).catch((err)=>{
+           dispatch({type:authactions.authenticate_failure,payload:err.message,message:err.message})
+       })
+    }
+}
+export const clearmessage=()=>{
+            return dispatch=>{
+                dispatch({type:authactions.clear_message})
+            }
+}
+export const register = (user:userr)=>{
+    return async dispatch=>{
+        dispatch({type:authactions.authenticate_request})
+       await axioss.post("/auth/register",{...user}).then((res)=>{
+        dispatch({type:authactions.authenticate_success,payload:res.data,message:"authenticate success"})
+       }).catch((err)=>{
+           dispatch({type:authactions.authenticate_failure,payload:err.message})
+       })
+    }
+}

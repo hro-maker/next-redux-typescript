@@ -1,0 +1,9 @@
+.login_wraper,.login_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login_form{
+    flex-direction: column;
+    padding-top: 10%;
+}
