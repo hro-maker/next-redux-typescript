@@ -21,7 +21,7 @@ const Navbarr: FC<Navbarprops> = ({ islogin=false }) => {
                 <Nav className="mr-auto df">
                     {islogin 
                     ? <><Link href="/"><a className="nav-link">Home</a></Link>
-                        <Link href="/posts"><a className="nav-link nav-link-mr">posts</a></Link>
+                        <Link href="/product"><a className="nav-link nav-link-mr">Products</a></Link>
                         <Button className="logout_btn primery" onClick={logout} >logout</Button></>
                         
                      :   <><Link href="/auth/login"><a className="nav-link">login</a></Link> 

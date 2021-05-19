@@ -1,5 +1,6 @@
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
+import Meniuheader from '../components/meniuheader';
 import Navbarr from '../components/navbar';
 
 const Paplicroutes:React.FC = ({children}) => {
@@ -14,6 +15,7 @@ const Paplicroutes:React.FC = ({children}) => {
     return (
         <div>
             <Navbarr islogin={true}/>
+            <Meniuheader/>
             {children}
         </div>
     );

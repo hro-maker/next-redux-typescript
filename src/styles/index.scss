@@ -1,5 +1,10 @@
 //normilize 
-// @import './normilize.scss';
+@import './normilize.scss';
+
+//coponents
+@import './components.scss';
+
+
 //pages
 @import './auth.scss';
 .logout_btn{

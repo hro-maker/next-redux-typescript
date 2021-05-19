@@ -1,5 +1,5 @@
 import axios from "axios";
-import { api } from "./urlconfig";
+import { api } from "../urlconfig";
 
 let token
 if(process.browser){
