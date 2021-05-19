@@ -1,5 +1,7 @@
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
+import { fetchcategory } from '../../redux/actions/categoryactions';
+import { wrapper, NextThunkDispatch } from '../../redux/store';
 import Meniuheader from '../components/meniuheader';
 import Navbarr from '../components/navbar';
 
@@ -20,5 +22,6 @@ const Paplicroutes:React.FC = ({children}) => {
         </div>
     );
 }
+
 
 export default Paplicroutes;
