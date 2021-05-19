@@ -16,7 +16,7 @@ export const authreducer = (
         data: action.payload,
         loading: false,
         error: null,
-        message:action.message || "authenticate success"
+        message:action.message
       };
     case authactions.authenticate_request:
       return {
@@ -34,7 +34,7 @@ export const authreducer = (
         data: null,
         loading: false,
         error: action.payload,
-        message:action.message || "authenticate failure"
+        message:action.message
       };
     default:
       return state;

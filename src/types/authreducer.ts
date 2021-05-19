@@ -2,12 +2,10 @@
 interface Idata{
     token:string,
     user:{
-        _id:string,
-        firstName:string,
-        lastName:string,
-        email:string,
-        fullName:string,
-        profilePicture:string,
+        _id?:string,
+        email?:string,
+        username:string,
+        profilePicture?:string,
     }
 }
 

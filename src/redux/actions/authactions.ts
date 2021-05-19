@@ -32,6 +32,10 @@ export const register = (user:userr)=>{
        })
     }
 }
+interface Iuse{
+    id:string,
+    username:string
+}
 export const Isuserlogin=()=>{
     return dispatch =>{
         let user
@@ -40,8 +44,11 @@ export const Isuserlogin=()=>{
             token = JSON.parse(localStorage.getItem("token"))
         }
         if(token){
-                let decode=jwt_decode(token)
-                console.log("token",decode)
+                let decode:Iuse=jwt_decode(token)
+                const {id,username}=decode
+                dispatch({type:authactions.authenticate_success,payload:{token,user:{id,username}}})
+        }else{
+            dispatch({type:authactions.authenticate_failure,payload:"you are dont registret"})
         }
     }
         
