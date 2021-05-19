@@ -20,10 +20,16 @@ const Meniuheader = () => {
         : null}
       {categories
         ? categories
-            .filter((elem) => elem.parentId === "")
             .filter((elem) => elem.childrens.length > 0)
-            .map((el) => {
-              return <div key={el._id}>{el.title}</div>;
+            .map((el,_,arr) => {
+              return  <div key={el._id}> 
+               <div >{el.title}</div>
+               {el.childrens.map((elem,i)=>{
+                   return <div key={elem.title}>
+                       {elem.title}
+                   </div>
+               })}
+              </div>;
             })
         : null}
     </div>

@@ -1,7 +1,7 @@
 export interface Icategory {
   _id: string;
   title: string;
-  childrens: [{ _id: string; title: string }];
+  childrens: [{ id: string; title: string }];
   parentId: string;
 }
 export interface categoriinitialstate {
