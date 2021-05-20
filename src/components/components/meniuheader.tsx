@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Icategory } from "../../types/categoryreducer";
 import { typetuseselector } from "./../../hooks/useselector";
@@ -8,30 +9,37 @@ const Meniuheader = () => {
   useEffect(() => {
     setCategories(category.categories);
   }, [category.categories]);
+  const renderCategories = (categoryes) => {
+    let categories = [];
+    for (let category of categoryes) {
+      categories.push(
+      
+        <li className="nav_link" key={category.title}>
+          { category.parentId ? (
+            <Link
+              href={`/${category.title}?cid=${category._id}`}
+            >
+              { category.title}
+            </Link>
+          ) : (
+             <span> {category.title}</span>
+            
+          )}
+
+          {category.childrens.length > 0 ? (
+            <ul >{renderCategories(category.childrens)}</ul>
+          ) : null}
+        </li>
+      );
+    }
+    return categories;
+  };
+
   return (
     <div className="meniuheader">
-      {categories
-        ? categories
-            .filter((elem) => elem.childrens.length < 1)
-            .filter((elem) => elem.parentId !== "")
-            .map((el) => {
-              return <div key={el._id}>{el.title}</div>;
-            })
-        : null}
-      {categories
-        ? categories
-            .filter((elem) => elem.childrens.length > 0)
-            .map((el,_,arr) => {
-              return  <div key={el._id}> 
-               <div >{el.title}</div>
-               {el.childrens.map((elem,i)=>{
-                   return <div key={elem.title}>
-                       {elem.title}
-                   </div>
-               })}
-              </div>;
-            })
-        : null}
+      {categories && categories.length > 0
+          ? renderCategories(categories)
+          : null}
     </div>
   );
 };

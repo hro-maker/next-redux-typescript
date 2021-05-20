@@ -34,7 +34,8 @@ export const register = (user:userr)=>{
 }
 interface Iuse{
     id:string,
-    username:string
+    username:string,
+    exp:number
 }
 export const Isuserlogin=()=>{
     return dispatch =>{
@@ -44,7 +45,9 @@ export const Isuserlogin=()=>{
         }
         if(token){
                 let decode:Iuse=jwt_decode(token)
-                const {id,username}=decode
+                const {id,username,exp}=decode
+                let ar=Date.now() / exp
+                console.log(ar)
                 dispatch({type:authactions.authenticate_success,payload:{token,user:{id,username}}})
         }else{
             dispatch({type:authactions.authenticate_failure,payload:"you are dont registret"})
