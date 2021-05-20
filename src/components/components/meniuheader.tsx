@@ -17,9 +17,10 @@ const Meniuheader = () => {
         <li className="nav_link" key={category.title}>
           { category.parentId ? (
             <Link
+        
               href={`/${category.title}?cid=${category._id}`}
             >
-              { category.title}
+             <a  className="menuheater_link"> { category.title}</a>
             </Link>
           ) : (
              <span> {category.title}</span>
@@ -36,7 +37,7 @@ const Meniuheader = () => {
   };
 
   return (
-    <div className="meniuheader">
+    <div className="menuHeader">
       {categories && categories.length > 0
           ? renderCategories(categories)
           : null}
