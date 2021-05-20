@@ -10,11 +10,14 @@ import { bindactions } from '../hooks/typeaction';
 const WrappedApp: FC<AppProps> = ({Component, pageProps}) => 
   {
     const {Isuserlogin}=bindactions()
-    const {auth}=typetuseselector(state=>state)
+    const {auth,category}=typetuseselector(state=>state)
     const [loading,setLoading]=useState(false)
     useEffect(()=>{
         setLoading(auth.loading)
     },[auth.loading])
+    useEffect(()=>{
+      setLoading(category.loading)
+  },[category.loading])
     useEffect(()=>{
       Isuserlogin()
     },[])
