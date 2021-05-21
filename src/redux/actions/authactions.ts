@@ -46,9 +46,14 @@ export const Isuserlogin=()=>{
         if(token){
                 let decode:Iuse=jwt_decode(token)
                 const {id,username,exp}=decode
-                let ar=Date.now() / exp
-                console.log(ar)
-                dispatch({type:authactions.authenticate_success,payload:{token,user:{id,username}}})
+                if (Date.now() >= exp * 1000) {
+                    if(window){
+                        localStorage.removeItem("token")
+                    }
+                    dispatch({type:authactions.authenticate_failure,payload:"you are dont registret"})
+                  }else{
+                    dispatch({type:authactions.authenticate_success,payload:{token,user:{id,username}}})
+                  }
         }else{
             dispatch({type:authactions.authenticate_failure,payload:"you are dont registret"})
         }
